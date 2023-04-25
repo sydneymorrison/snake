@@ -21,6 +21,11 @@ snakeEl.style.gridRowStart = 5;
 snakeEl.style.gridColumnStart = 5; 
 snakeBoard.appendChild(snakeEl);
 
+const targetObjEl = document.querySelector('.target-object');
+targetObjEl.style.gridRowStart = 7;
+targetObjEl.style.gridColumnStart = 8; 
+snakeBoard.appendChild(targetObjEl);
+
 
 /*----- event listeners -----*/
 
