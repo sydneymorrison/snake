@@ -1,8 +1,5 @@
 /*----- constants -----*/
 
-const TARGET = {
-    color: 'red'
-};
 
 
 
@@ -14,21 +11,49 @@ let currentScore; // p will be for player results
 
 /*----- cached elements  -----*/
 
-const snakeBoard = document.querySelector('#snake-board'); //Capture the board
+const snakeBoardEl = document.querySelector('#snake-board'); //Capture the board
 
+
+//Add snake to snakeBoard
 const snakeEl = document.querySelector('.snake'); 
 snakeEl.style.gridRowStart = 5;
 snakeEl.style.gridColumnStart = 5; 
-snakeBoard.appendChild(snakeEl);
+snakeBoardEl.appendChild(snakeEl);
 
-const targetObjEl = document.querySelector('.target-object');
-targetObjEl.style.gridRowStart = 7;
-targetObjEl.style.gridColumnStart = 8; 
-snakeBoard.appendChild(targetObjEl);
+//Add target Object to snakeBoard
+const targetEl = document.querySelector('.target');
+targetEl.style.gridRowStart = 7;
+targetEl.style.gridColumnStart = 8; 
+snakeBoardEl.appendChild(targetEl);
 
 
 /*----- event listeners -----*/
 
 
+/*----- classes -----*/
+class Snake {
+    constructor(snakeEl) {
+        this.snakeEl = snakeEl; //new snakeEl
+        this.position = {x, y}; //position of snake
+        this.direction = direction; //direction of snake
+    }
+
+
+}
+
+
 
 /*----- functions -----*/
+ init();
+
+ function init () {
+    //Instantiating snake class
+    snakeObject = new Snake(snakeEl);
+
+    //Render's message to Snake Board
+    function renderMessage();
+
+
+ }
+
+

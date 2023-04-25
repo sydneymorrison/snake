@@ -47,20 +47,20 @@ header span {
 }
 
 #snake-board > div {
-    border: 0.5px solid #8A2BE2;
+    border: 0.6px solid #8A2BE2;
 }
 
 .snake {
     width: 7vmin;
     height: 7vmin;
     background-color: yellow;
-    border: 3px solid red;
+    border: 5px solid red;
 }
 
-.target-object {
+.target {
     width: 7vmin;
     height: 7vmin;
     border-radius: 50%;
     background-color: #6495ED;
-    border: 3px solid green;
+    border: 5px solid green;
 }
