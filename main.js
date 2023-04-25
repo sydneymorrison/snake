@@ -31,15 +31,19 @@ snakeBoardEl.appendChild(targetEl);
 
 
 /*----- classes -----*/
-class Snake {
-    constructor(snakeEl) {
-        this.snakeEl = snakeEl; //new snakeEl
-        this.position = {x, y}; //position of snake
-        this.direction = direction; //direction of snake
-    }
+ class Snake1 {
+     constructor(x, y, direction) {
+//         //this.snakeEl = snakeEl; //new snakeEl
+         this.body = [
+            {x:x, y:y} //Square element
+         ];
+         this.position = {x, y}; //position of snake
+         this.direction = direction; //direction of snake
+     }
 
+     
 
-}
+ }
 
 
 
@@ -48,10 +52,10 @@ class Snake {
 
  function init () {
     //Instantiating snake class
-    snakeObject = new Snake(snakeEl);
+    snakeObject1 = new Snake1(body, 5, 5, direction);
 
     //Render's message to Snake Board
-    function renderMessage();
+    //function renderMessage();
 
 
  }
