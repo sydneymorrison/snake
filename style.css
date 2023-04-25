@@ -42,7 +42,7 @@ header span {
     display: grid;
     grid-template-columns: repeat(10, 7vmin);
     grid-template-rows: repeat(10, 7vmin);
-    border: 5px solid #8A2BE2;
+    border: 6px solid #8A2BE2;
     background-color: lightpink;
 }
 
@@ -53,6 +53,7 @@ header span {
 .snake {
     width: 7vmin;
     height: 7vmin;
+    position: absolute;
     background-color: yellow;
     border: 5px solid red;
 }
@@ -60,6 +61,7 @@ header span {
 .target {
     width: 7vmin;
     height: 7vmin;
+    position: absolute;
     border-radius: 50%;
     background-color: #6495ED;
     border: 5px solid green;
