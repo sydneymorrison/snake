@@ -16,13 +16,14 @@ let currentScore; // p will be for player results
 
 const snakeBoard = document.querySelector('#snake-board'); //Capture the board
 
-const snakeEl = document.createElement('div');
-snakeEl.classList.add('snake');
-snakeEl.style.gridRowStart = snake.position.y;
-snakeEl.style.gridColumnStart = snake.position.x; 
-
+const snakeEl = document.querySelector('.snake'); 
+snakeEl.style.gridRowStart = 5;
+snakeEl.style.gridColumnStart = 5; 
+snakeBoard.appendChild(snakeEl);
 
 
 /*----- event listeners -----*/
+
+
 
 /*----- functions -----*/
