@@ -26,9 +26,7 @@ const targetEl = document.querySelector('.target');
 
 /*----- event listeners -----*/
 
-document.addEventListener('')
-
-
+document.addEventListener('keydown', arrowDrop); 
 
 
 
@@ -83,7 +81,6 @@ document.addEventListener('')
         const snakeBody = this.body[this.body.length -1];
         
         function snakeGrow (direction) {
-            //if snake is moving up
             if(this.direction === "up"){
                 this.body.push({x: snakeBody.x, y: snakeBody.y - 1})
             } else if (this.direction === "right") {
@@ -93,19 +90,17 @@ document.addEventListener('')
             } else if (this.direction === "left") {
                 this.body.push({x: snakeBody.x - 1, y: snakeBody.y})
         }
-
-     }
-
+      }
     }
- 
+}
 
 /*----- functions -----*/
  init();
 
 
- function init() {
+function init() {
 
-const snakeBoard = [
+    snakeBoard = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -118,6 +113,9 @@ const snakeBoard = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ];
 
+    currentScore = {
+        p: 0,
+    }
 
     //Instantiating snake class
     //snakeObject1 = new Snake1(body, 1, 0, 0, right);
@@ -138,8 +136,11 @@ const snakeBoard = [
     //Adding Target to Board
     const addTargetEl = document.querySelector('.target');
     snakeBoardEl.appendChild(targetEl);
+  
+ }
 
-    
+ function arrowDrop(event) {
+
  }
 
 
