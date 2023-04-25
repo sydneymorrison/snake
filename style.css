@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+.flex-ctr {
+    flex-direction: column;
+}
+
+
+header span {
+    font-family: 'Tomorrow People', sans-serif;
+    font-size: 50px;
+    color: blue;
+}
+
+#snake-board > div {
+    background-color: lightpink;
+}
+
+section {
+    display: grid;
+}
+
