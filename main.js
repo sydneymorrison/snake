@@ -85,7 +85,7 @@ document.addEventListener('')
         function snakeGrow (direction) {
             //if snake is moving up
             if(this.direction === "up"){
-                this.body.push({x: snakeBody.x, y:snakeBody.y - 1})
+                this.body.push({x: snakeBody.x, y: snakeBody.y - 1})
             } else if (this.direction === "right") {
                 this.body.push({x: snakeBody.x + 1, y: snakeBody.y})
             } else if (this.direction === "down") {
