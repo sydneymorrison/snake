@@ -28,6 +28,8 @@ const targetEl = document.querySelector('.target');
 
 
 
+
+
 /*----- classes -----*/
  class Snake1 {
      constructor(x, y, direction) {
@@ -35,8 +37,8 @@ const targetEl = document.querySelector('.target');
          this.body = [
             {x:x, y:y} //Square element
          ];
-         this.position = {x, y}; //position of snake
-         this.direction = direction; //direction of snake
+         this.position = {x: 5, y: 5}; //position of snake
+         this.direction = right; //direction of snake
      }
 
      move () {
@@ -50,25 +52,35 @@ const targetEl = document.querySelector('.target');
 
         //interval for how fast the snake will move
         setInterval(function(){
-            snake.move();
+           snake.move();
         }, 1000);
      }
 
-     direction () {
-        if (keyCode === 37) {
-
-        } else if (keyCode === 39) {
-
-        } else if (keyCode === 38) {
-
-        } else if (keyCode === 40){
-
+     changeDirection () {
+        function change(direction) {
+            //Arrow Up
+            if(this.direction !== "down") {
+                this.direction = "up";
+            //ArrowRight
+            } else if (this.direction !== "left") {
+                this.direction = "right";
+            //ArrowDown
+            } else if(this.direction !== "up") {
+                this.direction = "down";
+            //ArrowLeft
+            } else (this.direction !== "right") {
+                this.direction = "left";
+            }
         }
      }
 
- }
+     grow (){
+
+     }
 
 
+    }
+ 
 
 /*----- functions -----*/
  init();
