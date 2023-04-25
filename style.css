@@ -16,10 +16,18 @@ body {
     background-color: lightblue;
 }
 
+
+#snake-header {
+    display: inline-flex; 
+    justify-content: center;
+    gap: 5px;
+}
+
+
 h2 {
     color: green;
-    align-content: left;
-    margin-right: 420px;
+    align-content: left; 
+    /* margin-right: 400px; */
 }
 
 
