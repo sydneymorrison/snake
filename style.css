@@ -27,6 +27,7 @@ body {
 h2 {
     color: green;
     align-content: left; 
+    font-family: 'Tomorrow People', sans-serif;
     /* margin-right: 400px; */
 }
 
@@ -48,3 +49,12 @@ header span {
 #snake-board > div {
     border: 0.2vmin solid #8A2BE2;
 }
+
+.snake {
+    width: 7vmin;
+    height: 7vmin;
+    border-radius: 50%;
+    background-color: yellow;
+    border: 5px solid red;
+}
+
