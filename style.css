@@ -2,22 +2,37 @@
     box-sizing: border-box;
 }
 
-.flex-ctr {
+/* .flex-ctr {
     flex-direction: column;
+} */
+
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+}
+
+h2 {
+    color: green;
+    align-content: left;
+    margin-right: 420px;
 }
 
 
 header span {
     font-family: 'Tomorrow People', sans-serif;
-    font-size: 50px;
+    font-size: 90px;
     color: blue;
 }
 
-#snake-board > div {
-    background-color: lightpink;
-}
-
-section {
+#snake-board {
     display: grid;
+    grid-template-columns: repeat(10, 8vmin);
+    grid-template-rows: repeat(10, 8vmin);
+    background-color: lightpink;
 }
 
