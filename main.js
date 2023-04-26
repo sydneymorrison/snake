@@ -39,7 +39,7 @@ const targetEl = document.querySelector('.target');
          this.body = [{x:x, y:y}];
          this.length = 1; //length of snake
          this.position = {x:x, y:y}; //position of snake
-         this.direction = DIRECTION[direction] //direction of snake
+         this.direction = DIRECTIONS[direction]; //direction of snake
 
          document.addEventListener('keydown', function(event) {
             this.changeDirection(event.code);
@@ -153,13 +153,16 @@ function init() {
 
 
     //Instantiating snake class
-    const snakePrimary = new Snake1(snakeEl, [], 1, 0, 0, 'right');
-    snakeBoard.appendChild(snakeBoardEl);
-    snakeBoard.appendChild(targetEl);
+    const snakePrimary = new Snake1(snakeEl, [], 1, 5, 5, 'right');
+    snakeBoardEl.appendChild(snakeEl);
+    snakeBoardEl.appendChild(targetEl);
     snakePrimary.move(); 
     
+    setInterval(function(){
+        snakePrimary.move();
+    }, 1000);
     
-    render();
+    //render();
  }
 
  
