@@ -41,7 +41,7 @@ const targetEl = document.querySelector('.target');
          this.length = 1; //length of snake
          this.position = {x:x, y:y}; //position of snake
          this.direction = DIRECTIONS[direction]; //direction of snake
-
+     }
      
      
 
