@@ -42,7 +42,7 @@ const targetEl = document.querySelector('.target');
          this.position = {x:x, y:y}; //position of snake
          this.direction = DIRECTIONS[direction]; //direction of snake
 
-         document.addEventListener('keydown', function(event) {
+         document.addEventListener('keydown', (event) => {
             this.changeDirection(event.code);
           });
 
@@ -150,6 +150,9 @@ function init() {
     snakeBoardEl.appendChild(snakeEl);
     snakeBoardEl.appendChild(targetEl);
     snakePrimary.move(); 
+
+    //Set the targets starting position
+    setTargetPosition(7,7);
     
     setInterval(function(){
         snakePrimary.move();
@@ -162,6 +165,7 @@ function init() {
  function render() {
     renderBoard();
     gameLogic();
+    renderCurrentScore();
  }
 
 
@@ -174,7 +178,6 @@ function init() {
     // const addTargetEl = document.querySelector('.target');
     // snakeBoardEl.appendChild(targetEl);
   
-
  }
 
 
@@ -211,10 +214,34 @@ function init() {
     snakePrimary.grow();
 
     //Update target to new area on grid
-    moveTarget();
+    renderMoveTarget();
 
+ }
+
+ function setTargetPosition (x,y) {
+    
  }
 
  function renderCurrentScore() {
-
+    const scoreDisplay = document.querySelector('#power-score-counter');
+    scoreDisplay.textContent = `${currentScore.p}`;
  }
+
+ function renderMoveTarget() {
+    //Move target on grid in random position
+    const x = Math.floor(Math.random() * snakeBoard.length);
+    const y = Math.floor(Math.random() * snakeBoard[0].length);
+
+    targetEl.style.gridColumnStart = x + 1;
+    targetEl.style.gridRowStart = y + 1;
+ }
+
+
+//Snake movement 
+const snakeMovementInterval = setInterval(function() {
+    snakePrimary.move();
+    gameLogic();
+}, 1000);
+
+
+ 
