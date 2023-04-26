@@ -154,6 +154,11 @@ function init() {
 
     //Instantiating snake class
     const snakePrimary = new Snake1(snakeEl, [], 1, 0, 0, 'right');
+    snakeBoard.appendChild(snakeBoardEl);
+    snakeBoard.appendChild(targetEl);
+    snakePrimary.move(); 
+    
+    
     render();
  }
 
