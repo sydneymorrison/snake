@@ -17,6 +17,7 @@ let currentScore; // p will be for player results
 let snakeLocation; //'s' for snake and 't' for target
 let snakesCurrentDirection; // 's' for snake
 let gameStatus; //if the game is continuing or over 
+let snakePrimary;
 
 
 /*----- cached elements  -----*/
@@ -145,7 +146,7 @@ function init() {
 
 
     //Instantiating snake class
-    const snakePrimary = new Snake1(snakeEl, [], 1, 5, 5, 'right');
+    snakePrimary = new Snake1(snakeEl, [{x: 5, y: 5}], 1, 5, 5, 'right');
     snakeBoardEl.appendChild(snakeEl);
     snakeBoardEl.appendChild(targetEl);
     snakePrimary.move(); 
@@ -196,9 +197,24 @@ function init() {
     }
     
     //Target Collision
+    const targetPosition = {
+        x: parseInt(targetEl.style.gridColumnStart) -1,
+        y: parseInt(targetEl.style.gridRowStart) -1,
+    }
 
+    if (snakeHead.x === targetPosition.x && snakeHead.y === targetPosition.y) {
+        currentScore.p += 1;
+        renderCurrentScore();
+    }
 
+    //Grow the snake by 1
+    snakePrimary.grow();
 
+    //Update target to new area on grid
+    moveTarget();
 
+ }
+
+ function renderCurrentScore() {
 
  }
