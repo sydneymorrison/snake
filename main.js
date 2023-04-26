@@ -42,7 +42,7 @@ const targetEl = document.querySelector('.target');
          this.position = {x:x, y:y}; //position of snake
          this.direction = DIRECTIONS[direction]; //direction of snake
 
-     }
+     
      
 
      move () {
@@ -88,6 +88,8 @@ const targetEl = document.querySelector('.target');
         //then it should grow in size by +1 square
         
         const snakeBody = this.body[this.body.length -1];
+
+        //
         
         switch (this.direction) {
             case DIRECTIONS.up:
@@ -127,20 +129,15 @@ function init() {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ];
-
     currentScore = {
         p: 0,
     };
-    
     snakeLocation = {
         x: 0,
         y: 0,
     };
-    
     snakesCurrentDirection = 'right';
-    
     gameStatus = null;
-
 
     //Instantiating snake class
     snakePrimary = new Snake1(snakeEl, [{x: 5, y: 5}], 1, 5, 5, 'right');
@@ -154,8 +151,7 @@ function init() {
       });
 
     //Set the targets starting position
-    setTargetPosition(7,7);
-
+    renderTargetPosition(7,7);
     
     render();
  }
@@ -165,7 +161,7 @@ function init() {
     renderBoard();
     gameLogic();
     renderCurrentScore();
-    setTargetPosition();
+    renderTargetPosition();
  }
 
 
@@ -218,7 +214,7 @@ function init() {
     }
  }
 
- function setTargetPosition (x,y) {
+ function renderTargetPosition (x,y) {
     targetEl.style.gridColumnStart = x + 1;
     targetEl.style.gridRowStart = y + 1;
  }
