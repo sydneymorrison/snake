@@ -36,7 +36,7 @@ const targetEl = document.querySelector('.target');
  class Snake1 {
      constructor(snakeEl, body, length, x, y, direction) {
          this.snakeEl = snakeEl; //new snakeEl
-         this.body = [{x:x, y:y}];
+         this.body = [{x: x, y: y}];
          this.length = 1; //length of snake
          this.position = {x:x, y:y}; //position of snake
          this.direction = DIRECTIONS[direction]; //direction of snake
@@ -45,7 +45,6 @@ const targetEl = document.querySelector('.target');
             this.changeDirection(event.code);
           });
 
-          //Call move method
      }
      
 
@@ -89,31 +88,24 @@ const targetEl = document.querySelector('.target');
      grow (){
         //If the snake bumps into an element on the grid with a value of 2 
         //then it should grow in size by +1 square
+        
         const snakeBody = this.body[this.body.length -1];
         
         switch (this.direction) {
             case DIRECTIONS.up:
-                if(this.direction === "up"){
                     this.body.push({x: snakeBody.x, y: snakeBody.y - 1});
-                } 
                 break;
             
             case DIRECTIONS.right:
-                if (this.direction === "right") {
                     this.body.push({x: snakeBody.x + 1, y: snakeBody.y});
-                }
                 break;
             
             case DIRECTIONS.down:
-                if (this.direction === "down") {
                     this.body.push({x: snakeBody.x + 1, y: snakeBody.y + 1});
-                }
                 break;
             
             case DIRECTIONS.left:
-                if (this.direction === "left") {
                 this.body.push({x: snakeBody.x - 1, y: snakeBody.y});
-                }
                 break;
       }
     }
@@ -162,7 +154,7 @@ function init() {
         snakePrimary.move();
     }, 1000);
     
-    //render();
+    render();
  }
 
  
@@ -173,18 +165,27 @@ function init() {
 
 
  function renderBoard() {
-    //Adding Snake to Board
-    const addSnakeEl = document.querySelector('.snake');
-    snakeBoardEl.appendChild(snakeEl);
+    // //Adding Snake to Board
+    // const addSnakeEl = document.querySelector('.snake');
+    // snakeBoardEl.appendChild(snakeEl);
 
-    //Adding Target to Board
-    const addTargetEl = document.querySelector('.target');
-    snakeBoardEl.appendChild(targetEl);
+    // //Adding Target to Board
+    // const addTargetEl = document.querySelector('.target');
+    // snakeBoardEl.appendChild(targetEl);
   
+
  }
 
 
  function gameLogic() {
+
+    //Check for snake collision
+    const snakeHead = snakePrimary.body[0]
+    if (snakeHead.x < 0 || snakeHead.x >= snakeBoard.length ||
+        snakeHead.y < 0 || snakeHead.y >= snakeBoard[0].lengthth ) {
+        gameOver();
+        return;
+        }
 
 
 
