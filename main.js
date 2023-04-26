@@ -89,28 +89,10 @@ const targetEl = document.querySelector('.target');
         
         const snakeBody = this.body[this.body.length -1];
 
-        //Add a new segment at the same position as the current last segment 
-        
-
-        //
-        
-        switch (this.direction) {
-            case DIRECTIONS.up:
-                    this.body.push({x: snakeBody.x, y: snakeBody.y - 1});
-                break;
-            
-            case DIRECTIONS.right:
-                    this.body.push({x: snakeBody.x + 1, y: snakeBody.y});
-                break;
-            
-            case DIRECTIONS.down:
-                    this.body.push({x: snakeBody.x, y: snakeBody.y + 1});
-                break;
-            
-            case DIRECTIONS.left:
-                this.body.push({x: snakeBody.x - 1, y: snakeBody.y});
-                break;
-      }
+        //Add a new segment at the same position as the current last segment
+        this.body.push({ x: snakeBody.x, y: snakeBody.y});
+        this.length++;
+    
     }
 }
 
