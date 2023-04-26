@@ -92,7 +92,24 @@ const targetEl = document.querySelector('.target');
         //Add a new segment at the same position as the current last segment
         this.body.push({ x: snakeBody.x, y: snakeBody.y});
         this.length++;
-    
+
+
+        // switch (this.direction) {
+        //     case DIRECTIONS.up:
+        //             this.body.push({x: snakeBody.x, y: snakeBody.y - 1});
+        //         break;
+            
+        //     case DIRECTIONS.right:
+        //             this.body.push({x: snakeBody.x + 1, y: snakeBody.y});
+        //         break;
+            
+        //     case DIRECTIONS.down:
+        //             this.body.push({x: snakeBody.x, y: snakeBody.y + 1});
+        //         break;
+            
+        //     case DIRECTIONS.left:
+        //         this.body.push({x: snakeBody.x - 1, y: snakeBody.y});
+        //         break;
     }
 }
 
@@ -171,8 +188,8 @@ function init() {
         gameOver();
         return;
      }
-
-    //Check if the snakes head hits the snakes tail (x & y)
+    
+     //Check if the snakes head hits the snakes tail (x & y)
     for(let i = 1; i < snakePrimary.body.length; i++) {
         if (snakeHead.x === snakePrimary.body[i].x && snakeHead.y === snakePrimary.body[i].y) {
         gameOver();
@@ -185,15 +202,12 @@ function init() {
         x: parseInt(targetEl.style.gridColumnStart) -1,
         y: parseInt(targetEl.style.gridRowStart) -1,
     }
-
+    
     if (snakeHead.x === targetPosition.x && snakeHead.y === targetPosition.y) {
         currentScore.p += 1;
         renderCurrentScore();
-    
-
     //Grow the snake by 1
     snakePrimary.grow();
-
     //Update target to new area on grid
     renderMoveTarget();
     }
@@ -216,6 +230,23 @@ function init() {
 
     targetEl.style.gridRowStart = y + 1;
     targetEl.style.gridColumnStart = x + 1;
+ }
+
+ function renderSnakeBody() {
+    //Other parts and remove
+    const bodyElements = document.querySelector('.body');
+    bodyElements.forEach(function(bodySegment){
+        bodySegment.remove();
+    });
+
+    //Render the segments on the board and add snake body parts
+    snakePrimary.body.slice(1).forEach(function(segment){
+        const bodySegment = document.createElement('div');
+        bodySegment.className = 'body';
+        bodySegment.style.gridColumnStart = segment.x + 1;
+        bodySegment.style.gridRowStart = segment.y + 1;
+        snakeBoardEl.appendChild(bodySegment);
+    })
  }
 
 
