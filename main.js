@@ -89,6 +89,9 @@ const targetEl = document.querySelector('.target');
         
         const snakeBody = this.body[this.body.length -1];
 
+        //Add a new segment at the same position as the current last segment 
+        
+
         //
         
         switch (this.direction) {
