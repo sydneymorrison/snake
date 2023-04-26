@@ -42,10 +42,6 @@ const targetEl = document.querySelector('.target');
          this.position = {x:x, y:y}; //position of snake
          this.direction = DIRECTIONS[direction]; //direction of snake
 
-         document.addEventListener('keydown', (event) => {
-            this.changeDirection(event.code);
-          });
-
      }
      
 
@@ -53,35 +49,35 @@ const targetEl = document.querySelector('.target');
         this.position.x += this.direction.x;
         this.position.y += this.direction.y;
 
-        this.snakeEl.style.gridColumnStart = this.position.x + 1;
-        this.snakeEl.style.gridRowStart = this.position.y + 1;
+        this.snakeEl.style.gridColumn = this.position.x + 1;
+        this.snakeEl.style.gridRow = this.position.y + 1;
     }
 
-     changeDirection (code) {
+     changeDirection (snake, code) {
         //if the player hits the up, right, down, left arrow key the
         //the snake should move
         switch (code) {
             case "ArrowUp":
-                if(this.direction !== DIRECTIONS.down) {
-                    this.direction = DIRECTIONS.up;
+                if (snakePrimary.direction !== DIRECTIONS.down) {
+                    snakePrimary.direction = DIRECTIONS.up;
                 }
                 break;
 
             case "ArrowRight":
-                if (this.direction !== DIRECTIONS.left) {
-                    this.direction = DIRECTIONS.right;
+                if (snakePrimary.direction !== DIRECTIONS.left) {
+                    snakePrimary.direction = DIRECTIONS.right;
                 }
                 break;
             
             case "ArrowDown":
-                if(this.direction !== DIRECTIONS.up) {
-                    this.direction = DIRECTIONS.down;
+                if(snakePrimary.direction !== DIRECTIONS.up) {
+                    snakePrimary.direction = DIRECTIONS.down;
                 }
                 break;
             
             case "ArrowLeft":
-                if (this.direction !== DIRECTIONS.right) {
-                        this.direction = DIRECTIONS.left;
+                if (snakePrimary.direction !== DIRECTIONS.right) {
+                        snakePrimary.direction = DIRECTIONS.left;
                     }
                 break;
         }
@@ -103,7 +99,7 @@ const targetEl = document.querySelector('.target');
                 break;
             
             case DIRECTIONS.down:
-                    this.body.push({x: snakeBody.x + 1, y: snakeBody.y + 1});
+                    this.body.push({x: snakeBody.x, y: snakeBody.y + 1});
                 break;
             
             case DIRECTIONS.left:
@@ -152,13 +148,14 @@ function init() {
     snakeBoardEl.appendChild(targetEl);
     snakePrimary.move(); 
 
+    //Event Listener
+    document.addEventListener('keydown', (event) => {
+        this.changeDirection(event.code);
+      });
+
     //Set the targets starting position
     setTargetPosition(7,7);
-    
-    //Time interval for movement
-    setInterval(function(){
-        snakePrimary.move();
-    }, 1000);
+
     
     render();
  }
