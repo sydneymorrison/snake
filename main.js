@@ -180,12 +180,22 @@ function init() {
  function gameLogic() {
 
     //Check for snake collision
-    const snakeHead = snakePrimary.body[0]
+    const snakeHead = snakePrimary.body[0];
     if (snakeHead.x < 0 || snakeHead.x >= snakeBoard.length ||
-        snakeHead.y < 0 || snakeHead.y >= snakeBoard[0].lengthth ) {
+        snakeHead.y < 0 || snakeHead.y >= snakeBoard[0].length ) {
+        gameOver();
+        return;
+     }
+
+    //Check if the snakes head hits the snakes tail (x & y)
+    for(let i = 1; i < snakePrimary.body.length; i++) {
+        if (snakeHead.x === snakePrimary.body[i].x && snakeHead.y === snakePrimary.body[i].y) {
         gameOver();
         return;
         }
+    }
+    
+    //Target Collision
 
 
 
