@@ -150,7 +150,7 @@ function init() {
 
     //Event Listener
     document.addEventListener('keydown', (event) => {
-        this.changeDirection(event.code);
+        snakePrimary.changeDirection(snakePrimary, event.code);
       });
 
     //Set the targets starting position
@@ -186,7 +186,7 @@ function init() {
     //Check for snake collision
     const snakeHead = snakePrimary.body[0];
     if (snakeHead.x < 0 || snakeHead.x >= snakeBoard.length ||
-        snakeHead.y < 0 || snakeHead.y >= snakeBoard[0].length ) {
+        snakeHead.y < 0 || snakeHead.y >= snakeBoard[0].length) {
         gameOver();
         return;
      }
@@ -208,14 +208,14 @@ function init() {
     if (snakeHead.x === targetPosition.x && snakeHead.y === targetPosition.y) {
         currentScore.p += 1;
         renderCurrentScore();
-    }
+    
 
     //Grow the snake by 1
     snakePrimary.grow();
 
     //Update target to new area on grid
     renderMoveTarget();
-
+    }
  }
 
  function setTargetPosition (x,y) {
