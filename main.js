@@ -76,7 +76,8 @@ const targetEl = document.querySelector('.target');
             case "ArrowDown":
                 if(this.direction !== DIRECTIONS.up) {
                     this.direction = DIRECTIONS.down;
-                } 
+                }
+                break;
             
             case "ArrowLeft":
                 if (this.direction !== DIRECTIONS.right) {
@@ -154,6 +155,7 @@ function init() {
     //Set the targets starting position
     setTargetPosition(7,7);
     
+    //Time interval for movement
     setInterval(function(){
         snakePrimary.move();
     }, 1000);
@@ -166,6 +168,7 @@ function init() {
     renderBoard();
     gameLogic();
     renderCurrentScore();
+    setTargetPosition();
  }
 
 
@@ -219,7 +222,8 @@ function init() {
  }
 
  function setTargetPosition (x,y) {
-    
+    targetEl.style.gridColumnStart = x + 1;
+    targetEl.style.gridRowStart = y + 1;
  }
 
  function renderCurrentScore() {
@@ -232,8 +236,8 @@ function init() {
     const x = Math.floor(Math.random() * snakeBoard.length);
     const y = Math.floor(Math.random() * snakeBoard[0].length);
 
-    targetEl.style.gridColumnStart = x + 1;
     targetEl.style.gridRowStart = y + 1;
+    targetEl.style.gridColumnStart = x + 1;
  }
 
 
