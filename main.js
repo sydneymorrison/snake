@@ -6,6 +6,15 @@ const COLOR = {
     '2': document.querySelector('.target'), //target element
 };
 
+const DIRECTIONS = {
+        up: "up",
+        down: "down",
+        left: "left",
+        right: "right",
+};
+
+const x = 5; //starting x position
+const y = 5; //starting y position
 
 /*----- state variables -----*/
 
@@ -27,19 +36,22 @@ const targetEl = document.querySelector('.target');
 
 /*----- event listeners -----*/
 
-document.addEventListener('keydown', arrowKeys); 
-
-
+//Event listener for arrow keys in Snake1 class
 
 /*----- classes -----*/
  class Snake1 {
-     constructor(body, length, x, y, direction) {
-         //this.snakeEl = snakeEl; //new snakeEl
-         this.body = [ {x:x, y:y}]; //Square element
+     constructor(snakeEl, body, length, x, y, direction) {
+         this.snakeEl = snakeEl; //new snakeEl
+         this.body = [{x:x, y:y}];
          this.length = 1; //length of snake
-         this.position = {x: 5, y: 5}; //position of snake
-         this.direction = right; //direction of snake
+         this.position = {x:x, y:y}; //position of snake
+         this.direction = 'right'; //direction of snake
+
+         document.addEventListener('keydown', function(event) {
+            this.changeDirection(event.code);
+          });
      }
+     
 
      move () {
         //Updating the position of the snake in grid
@@ -47,19 +59,19 @@ document.addEventListener('keydown', arrowKeys);
         this.position.y += this.direction.y;
 
         //Update the position in CSS leveraging CSS & DOM
-        snakeEl.style.gridColumnStart = this.position.x;
-        snakeEl.style.gridRowStart = this.position.y;
+        this.style.gridColumnStart = this.position.x;
+        this.style.gridRowStart = this.position.y;
 
         //interval for how fast the snake will move
         setInterval(function(){
-           snake.move();
+           this.move();
         }, 1000);
      }
 
-     changeDirection () {
+     changeDirection (code) {
         //if the player hits the up, right, down, left arrow key the
         //the snake should move
-        switch (direction) {
+        switch (code) {
             case "ArrowUp":
                 if(this.direction !== "down") {
                     this.direction = "up";
@@ -93,25 +105,25 @@ document.addEventListener('keydown', arrowKeys);
         switch (this.direction) {
             case 'up':
                 if(this.direction === "up"){
-                    this.body.push({x: snakeBody.x, y: snakeBody.y - 1})
+                    this.body.push({x: snakeBody.x, y: snakeBody.y - 1});
                 } 
                 break;
             
             case 'right':
                 if (this.direction === "right") {
-                    this.body.push({x: snakeBody.x + 1, y: snakeBody.y})
+                    this.body.push({x: snakeBody.x + 1, y: snakeBody.y});
                 }
                 break;
             
             case 'down':
                 if (this.direction === "down") {
-                    this.body.push({x: snakeBody.x + 1, y: snakeBody.y + 1})
+                    this.body.push({x: snakeBody.x + 1, y: snakeBody.y + 1});
                 }
                 break;
             
             case 'left':
                 if (this.direction === "left") {
-                this.body.push({x: snakeBody.x - 1, y: snakeBody.y})
+                this.body.push({x: snakeBody.x - 1, y: snakeBody.y});
                 }
                 break;
       }
@@ -146,25 +158,20 @@ function init() {
         y: 0,
     };
     
-    snakesCurrentDirection = {
-        up: "up",
-        down: "down",
-        left: "left",
-        right: "right",
-    };
+    snakesCurrentDirection = 'right';
     
-    gameStatus = mull;
+    gameStatus = null;
 
 
     //Instantiating snake class
-    snake1 = new Snake1(body, 1, 0, 0, right, grow);
+    const snakePrimary = new Snake1(snakeEl, [], 1, 0, 0, 'right');
     render();
  }
 
  
  function render() {
     renderBoard();
-    arrowKeys();
+    gameLogic();
  }
 
 
@@ -179,10 +186,10 @@ function init() {
   
  }
 
- function arrowKeys(event) {
+ function gameLogic {
+
+
+
+
 
  }
-
-
-
-
