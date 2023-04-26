@@ -39,9 +39,11 @@ header span {
 }
 
 #snake-board {
+    width: 500px;
+    height: 500px;
     display: grid;
-    grid-template-columns: repeat(10, 7vmin);
-    grid-template-rows: repeat(10, 7vmin);
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
     border: 6px solid #8A2BE2;
     background-color: lightpink;
 }

@@ -164,6 +164,7 @@ function init() {
     gameLogic();
     renderCurrentScore();
     renderTargetPosition();
+    renderSnakeBody();
  }
 
 
@@ -234,7 +235,7 @@ function init() {
 
  function renderSnakeBody() {
     //Other parts and remove
-    const bodyElements = document.querySelector('.body');
+    const bodyElements = document.querySelectorAll('.body');
     bodyElements.forEach(function(bodySegment){
         bodySegment.remove();
     });
@@ -246,7 +247,7 @@ function init() {
         bodySegment.style.gridColumnStart = segment.x + 1;
         bodySegment.style.gridRowStart = segment.y + 1;
         snakeBoardEl.appendChild(bodySegment);
-    })
+    });
  }
 
 
