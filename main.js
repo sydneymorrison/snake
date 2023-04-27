@@ -97,7 +97,7 @@ const targetEl = document.querySelector('.target');
 
      grow (){
         //Grow square by 1 if it bumps into a target
-        //this.length++;
+        //in this.length++;
         
         const snakeBody = this.body[this.body.length -1];
 
@@ -224,7 +224,6 @@ function init() {
 
 
 
-
  function renderTargetPosition (x,y) {
     targetEl.style.gridColumnStart = x + 1;
     targetEl.style.gridRowStart = y + 1;
@@ -245,12 +244,12 @@ function init() {
 
 
  function renderMoveTarget() {
-    // //Move target on grid in random position
-    // const x = Math.floor(Math.random() * snakeBoard.length);
-    // const y = Math.floor(Math.random() * snakeBoard[0].length);
+    //Move target on grid in random position
+    const x = Math.floor(Math.random() * snakeBoard.length);
+    const y = Math.floor(Math.random() * snakeBoard[0].length);
 
-    // targetEl.style.gridColumnStart = x + 1;
-    // targetEl.style.gridRowStart = y + 1;
+    targetEl.style.gridColumnStart = x + 1;
+    targetEl.style.gridRowStart = y + 1;
 
     let newPosition;
 
@@ -283,12 +282,19 @@ function init() {
     });
  }
 
+ //Render Message 
+
+ render gameMessage (){
+    
+ }
+
 
 //Snake movement 
 const snakeMovementInterval = setInterval(function() {
     snakePrimary.move();
+    renderSnakeBody();
     gameLogic();
-}, 1000);
+}, 800);
 
 
  
