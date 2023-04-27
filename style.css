@@ -8,7 +8,8 @@
 
 body {
     height: 100vh;
-    margin: 0;
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,7 +21,7 @@ body {
 #snake-header {
     display: inline-flex; 
     justify-content: center;
-    gap: 5px;
+    gap: 1px;
 }
 
 
@@ -39,8 +40,8 @@ header span {
 }
 
 #snake-board {
-    width: 600px;
-    height: 600px;
+    width: 560px;
+    height: 560px;
     display: grid;
     grid-template-columns: repeat(10, 30px);
     grid-template-rows: repeat(10, 30px);
@@ -76,11 +77,14 @@ header span {
     border: 5px solid green;
 }
 
-button {
-    margin-top: 4vmin;
-    padding: 2vmin;
-    font-size: 3vmin;
+.button {
+    /* margin-top: 1vmin; 
+    margin-bottom: 1vmin;  */
+    padding: 1.5vmin;
+    font-family: 'Tomorrow People', sans-serif;
+    font-size: 2vmin;
     border-radius: 5vmin;
     border: 0.1vmin solid grey;
-    color: grey;
+    color: black;
+    background-color: #00A170;
   }

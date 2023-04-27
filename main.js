@@ -27,11 +27,16 @@ const snakeBoardEl = document.querySelector('#snake-board'); // Capture the boar
 const snakeEl = document.querySelector('.snake'); 
 //Add target Object to snakeBoard
 const targetEl = document.querySelector('.target');
-
+//Message Element
+const messageEl = document.querySelector('#game-message');
+//Play again buttion
+const playAgainBtn = document.querySelector('.button'); 
 
 /*----- event listeners -----*/
 
-//Event listener for arrow keys in Snake1 class
+//Event listener for arrow keys in innit function 
+
+
 
 
 /*----- classes -----*/
@@ -185,30 +190,35 @@ function init() {
   
  }
 
+ function renderControls () {
+
+ }
+
 
  function gameLogic() {
 
-    //Check for snake collision
-    const snakeHead = snakePrimary.body[0];
-    if (snakeHead.x < 0 || snakeHead.x >= snakeBoard.length ||
-        snakeHead.y < 0 || snakeHead.y >= snakeBoard[0].length) {
-        gameOver();
-        return;
-     }
-    
-     //Check if the snakes head hits the snakes tail (x & y)
-    for(let i = 1; i < snakePrimary.body.length; i++) {
-        if (snakeHead.x === snakePrimary.body[i].x && snakeHead.y === snakePrimary.body[i].y) {
-        gameOver();
-        return;
+        //Check for snake collision
+        const snakeHead = snakePrimary.body[0];
+        if (snakeHead.x < 0 || snakeHead.x >= snakeBoard.length ||
+            snakeHead.y < 0 || snakeHead.y >= snakeBoard[0].length) {
+            gameOver();
+            return;
         }
-    }
+        
+        //Check if the snakes head hits the snakes tail (x & y)
+        for(let i = 1; i < snakePrimary.body.length; i++) {
+            if (snakeHead.x === snakePrimary.body[i].x && snakeHead.y === snakePrimary.body[i].y) {
+            gameOver();
+            return;
+            }
+        }
+        
+        //Target Collision
+        const targetPosition = {
+            x: parseInt(targetEl.style.gridColumnStart) -1,
+            y: parseInt(targetEl.style.gridRowStart) -1,
+        }
     
-    //Target Collision
-    const targetPosition = {
-        x: parseInt(targetEl.style.gridColumnStart) -1,
-        y: parseInt(targetEl.style.gridRowStart) -1,
-    }
     
     if (snakeHead.x === targetPosition.x && snakeHead.y === targetPosition.y) {
         currentScore.p += 1;
@@ -282,10 +292,12 @@ function init() {
     });
  }
 
- //Render Message 
+ //Stop game and render message
+ function gameOver() {
+    clearInterval(snakeMovementInterval);
+    messageEl.innerHTML ='game over play again!';
+    playAgainBtn.style.display = 'block';
 
- render gameMessage (){
-    
  }
 
 
