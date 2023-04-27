@@ -7,8 +7,6 @@ const DIRECTIONS = {
     right: { x: 1, y: 0 },
 };
 
-// const x = 5; //starting x position
-// const y = 5; //starting y position
 
 /*----- state variables -----*/
 
@@ -18,6 +16,7 @@ let snakeLocation; //'s' for snake and 't' for target
 let snakesCurrentDirection; // 's' for snake
 let gameStatus; //if the game is continuing or over 
 let snakePrimary;
+let snakeMovementInterval;
 
 
 /*----- cached elements  -----*/
@@ -29,14 +28,15 @@ const snakeEl = document.querySelector('.snake');
 const targetEl = document.querySelector('.target');
 //Message Element
 const messageEl = document.querySelector('#game-message');
-//Play again buttion
-const playAgainBtn = document.querySelector('.button'); 
+//Play again button
+const playAgainBtn = document.querySelector('#stop-button'); 
+//Start game button
+const startGameBtn = document.querySelector('#start-button');
 
 /*----- event listeners -----*/
 
+
 //Event listener for arrow keys in innit function 
-
-
 
 
 /*----- classes -----*/
@@ -109,24 +109,6 @@ const playAgainBtn = document.querySelector('.button');
         //Add a new segment at the same position as the current last segment
         this.body.push({ x: snakeBody.x, y: snakeBody.y});
         this.length++;
-
-
-        // switch (this.direction) {
-        //     case DIRECTIONS.up:
-        //             this.body.push({x: snakeBody.x, y: snakeBody.y - 1});
-        //         break;
-            
-        //     case DIRECTIONS.right:
-        //             this.body.push({x: snakeBody.x + 1, y: snakeBody.y});
-        //         break;
-            
-        //     case DIRECTIONS.down:
-        //             this.body.push({x: snakeBody.x, y: snakeBody.y + 1});
-        //         break;
-            
-        //     case DIRECTIONS.left:
-        //         this.body.push({x: snakeBody.x - 1, y: snakeBody.y});
-        //         break;
     }
 }
 
@@ -135,6 +117,9 @@ const playAgainBtn = document.querySelector('.button');
 
 
 function init() {
+
+    startGameBtn.style.display = 'block'; //show game button
+    playAgainBtn.style.display = 'none'; //hide game button
 
     snakeBoard = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -171,11 +156,22 @@ function init() {
 
     //Set the targets starting position
     renderTargetPosition(7,7);
+
+
+    //Snake movement 
+    const snakeMovementInterval = setInterval(function() {
+        snakePrimary.move();
+        renderSnakeBody();
+        gameLogic();
+    }, 800);
+
     
     render();
  }
 
  
+
+
  function render() {
     renderBoard();
     //gameLogic();
@@ -190,6 +186,12 @@ function init() {
   
  }
 
+ function startGame () {
+    messageEl.appendChild(startGameBtn);
+    messageEl.innerHTML = '';
+    startGameBtn.style.display = 'none';
+    init(); 
+ }
 
 
  function gameLogic() {
@@ -295,8 +297,10 @@ function init() {
  //Stop game and render message
  function gameOver() {
     clearInterval(snakeMovementInterval);
-    messageEl.innerHTML ='game over play again!';
-    playAgainBtn.style.display = 'block';
+    messageEl.innerHTML ='game over!';
+    startGameBtn.style.display = 'none'; //hide button when the game stops
+    playAgainBtn.style.display = 'block'; //show button when the game stops
+    
 
     //Event listener for gameover button
     playAgainBtn.addEventListener('click', function(){
@@ -306,14 +310,19 @@ function init() {
     });
  }
 
+ startGameBtn.addEventListener('click', function(){
+    startGameBtn.style.display = 'none'; //hide when the game starts
+    init();
+ })
 
 
-//Snake movement 
-const snakeMovementInterval = setInterval(function() {
-    snakePrimary.move();
-    renderSnakeBody();
-    gameLogic();
-}, 800);
+
+// //Snake movement 
+// const snakeMovementInterval = setInterval(function() {
+//     snakePrimary.move();
+//     renderSnakeBody();
+//     gameLogic();
+// }, 800);
 
 
  

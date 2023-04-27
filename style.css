@@ -40,8 +40,8 @@ header span {
 }
 
 #snake-board {
-    width: 560px;
-    height: 560px;
+    width: 550px;
+    height: 550px;
     display: grid;
     grid-template-columns: repeat(10, 30px);
     grid-template-rows: repeat(10, 30px);
