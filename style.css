@@ -60,12 +60,12 @@ header span {
     border: 5px solid red;
 }
 
-/* .snake-body {
+.snake-body {
     width: 7vmin;
     height: 7vmin;
     background-color: #40E0D0;
     border: 5px solid #E2F516;
-} */
+}
 
 .target {
     width: 7vmin;

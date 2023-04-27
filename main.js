@@ -49,13 +49,16 @@ const targetEl = document.querySelector('.target');
         this.position.x += this.direction.x;
         this.position.y += this.direction.y;
 
-        //Add a new segment to the current body
-        this.body.unshift({x: this.position.x, y:this.position.y});
-
-
         //Snake doesnt grow remove the last part of body
-        if(this.body.length > this.length) {
-            this.body.pop();
+        if(this.body.length < this.length) {
+            //Add a new segment to the current body
+            this.body.unshift({x: this.position.x, y:this.position.y});
+        } else {
+            //move to new position
+            const lastSegment = this.body.pop();
+            lastSegment.x = this.position.x;
+            lastSegment.y = this.position.y;
+            this.body.unshift(lastSegment);
         }
 
         this.snakeEl.style.gridColumn = this.position.x + 1;
@@ -167,9 +170,9 @@ function init() {
  
  function render() {
     renderBoard();
-    gameLogic();
+    //gameLogic();
     renderCurrentScore();
-    renderTargetPosition();
+    // renderTargetPosition();
     renderSnakeBody();
  }
 
@@ -208,18 +211,29 @@ function init() {
         currentScore.p += 1;
         renderCurrentScore();
         
-    //Grow the snake by 1
-    snakePrimary.grow();
-    //Update target to new area on grid
-    renderMoveTarget();
+        //Grow the snake by 1
+        snakePrimary.grow();
+        //Update target to new area on grid
+        renderMoveTarget();
+    
     }
+
+    renderSnakeBody();
  }
 
- function renderTargetPosition (x,y) {
-    targetEl.style.gridColumnStart = x + 1;
-    targetEl.style.gridRowStart = y + 1;
+//  function renderTargetPosition (x,y) {
+//     targetEl.style.gridColumnStart = x + 1;
+//     targetEl.style.gridRowStart = y + 1;
+//  }
+
+ function renderRandomPosition () {
+    return {
+        x: Math.floor(Math.random() * 10),
+        y: Math.floor(Math.random() * 10),
+    };
  }
 
+ 
  function renderCurrentScore() {
     const scoreDisplay = document.querySelector('#power-score-counter');
     scoreDisplay.textContent = `${currentScore.p}`;
