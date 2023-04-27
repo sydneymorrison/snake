@@ -49,6 +49,8 @@ const targetEl = document.querySelector('.target');
         this.position.x += this.direction.x;
         this.position.y += this.direction.y;
 
+
+
         //Snake doesnt grow remove the last part of body
         if(this.body.length < this.length) {
             //Add a new segment to the current body
@@ -63,6 +65,7 @@ const targetEl = document.querySelector('.target');
 
         this.snakeEl.style.gridColumn = this.position.x + 1;
         this.snakeEl.style.gridRow = this.position.y + 1;
+
     }
 
      changeDirection (snake, code) {
@@ -93,8 +96,8 @@ const targetEl = document.querySelector('.target');
      }
 
      grow (){
-        //If the snake bumps into an element on the grid with a value of 2 
-        //then it should grow in size by +1 square
+        //Grow square by 1 if it bumps into a target
+        //this.length++;
         
         const snakeBody = this.body[this.body.length -1];
 
@@ -215,16 +218,17 @@ function init() {
         snakePrimary.grow();
         //Update target to new area on grid
         renderMoveTarget();
-    
     }
-
     renderSnakeBody();
  }
 
-//  function renderTargetPosition (x,y) {
-//     targetEl.style.gridColumnStart = x + 1;
-//     targetEl.style.gridRowStart = y + 1;
-//  }
+
+
+
+ function renderTargetPosition (x,y) {
+    targetEl.style.gridColumnStart = x + 1;
+    targetEl.style.gridRowStart = y + 1;
+ }
 
  function renderRandomPosition () {
     return {
@@ -233,20 +237,34 @@ function init() {
     };
  }
 
- 
+
  function renderCurrentScore() {
     const scoreDisplay = document.querySelector('#power-score-counter');
     scoreDisplay.textContent = `${currentScore.p}`;
  }
 
- function renderMoveTarget() {
-    //Move target on grid in random position
-    const x = Math.floor(Math.random() * snakeBoard.length);
-    const y = Math.floor(Math.random() * snakeBoard[0].length);
 
+ function renderMoveTarget() {
+    // //Move target on grid in random position
+    // const x = Math.floor(Math.random() * snakeBoard.length);
+    // const y = Math.floor(Math.random() * snakeBoard[0].length);
+
+    // targetEl.style.gridColumnStart = x + 1;
+    // targetEl.style.gridRowStart = y + 1;
+
+    let newPosition;
+
+    do {
+        newPosition = renderRandomPosition();
+    } while (snakePrimary.body.some(function(segment){
+        return segment.x === newPosition.x && segment.y === newPosition.y;
+    }));
+    
     targetEl.style.gridColumnStart = x + 1;
     targetEl.style.gridRowStart = y + 1;
- }
+ };
+
+
 
  function renderSnakeBody() {
     //Other parts and remove

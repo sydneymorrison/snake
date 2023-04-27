@@ -53,23 +53,23 @@ header span {
 }
 
 .snake {
-    width: 7vmin;
-    height: 7vmin;
+    width: 50px;
+    height: 50px;
     /* position: absolute; */
     background-color: yellow;
     border: 5px solid red;
 }
 
-.snake-body {
-    width: 7vmin;
-    height: 7vmin;
+.body {
+    width: 50px;
+    height: 50px;
     background-color: #40E0D0;
     border: 5px solid #E2F516;
 }
 
 .target {
-    width: 7vmin;
-    height: 7vmin;
+    width: 50px;
+    height: 50px;
     /* position: absolute; */
     border-radius: 50%;
     background-color: #6495ED;
