@@ -16,7 +16,7 @@ let snakeLocation; //'s' for snake and 't' for target
 let snakesCurrentDirection; // 's' for snake
 let gameStatus; //if the game is continuing or over 
 let snakePrimary;
-let snakeMovementInterval;
+let snakeMovementInterval
 
 
 /*----- cached elements  -----*/
@@ -53,9 +53,6 @@ const startGameBtn = document.querySelector('#start-button');
         //Update the position
         this.position.x += this.direction.x;
         this.position.y += this.direction.y;
-
-
-
         //Snake doesnt grow remove the last part of body
         if(this.body.length < this.length) {
             //Add a new segment to the current body
@@ -67,10 +64,8 @@ const startGameBtn = document.querySelector('#start-button');
             lastSegment.y = this.position.y;
             this.body.unshift(lastSegment);
         }
-
         this.snakeEl.style.gridColumn = this.position.x + 1;
         this.snakeEl.style.gridRow = this.position.y + 1;
-
     }
 
      changeDirection (snake, code) {
@@ -159,7 +154,7 @@ function init() {
 
 
     //Snake movement 
-    const snakeMovementInterval = setInterval(function() {
+    snakeMovementInterval = setInterval(function() {
         snakePrimary.move();
         renderSnakeBody();
         gameLogic();
@@ -195,7 +190,6 @@ function init() {
 
 
  function gameLogic() {
-
         //Check for snake collision
         const snakeHead = snakePrimary.body[0];
         if (snakeHead.x < 0 || snakeHead.x >= snakeBoard.length ||
@@ -203,7 +197,6 @@ function init() {
             gameOver();
             return;
         }
-        
         //Check if the snakes head hits the snakes tail (x & y)
         for(let i = 1; i < snakePrimary.body.length; i++) {
             if (snakeHead.x === snakePrimary.body[i].x && snakeHead.y === snakePrimary.body[i].y) {
@@ -211,18 +204,15 @@ function init() {
             return;
             }
         }
-        
         //Target Collision
         const targetPosition = {
             x: parseInt(targetEl.style.gridColumnStart) -1,
             y: parseInt(targetEl.style.gridRowStart) -1,
         }
-    
-    
         if (snakeHead.x === targetPosition.x && snakeHead.y === targetPosition.y) {
             currentScore.p += 1;
             renderCurrentScore();
-            
+
         //Grow the snake by 1
         snakePrimary.grow();
         //Update target to new area on grid
@@ -248,12 +238,10 @@ function init() {
     };
  }
 
-
  function renderCurrentScore() {
     const scoreDisplay = document.querySelector('#power-score-counter');
     scoreDisplay.textContent = `${currentScore.p}`;
  }
-
 
  function renderMoveTarget() {
     //Move target on grid in random position
@@ -275,6 +263,14 @@ function init() {
     targetEl.style.gridRowStart = y + 1;
  };
 
+
+ function moveSnake () {
+    if (gameStatus !=== "over") {
+        snakePrimary.move();
+        renderSnakeBody();
+        gameLogic();
+    }
+ }
 
 
  function renderSnakeBody() {
@@ -310,10 +306,10 @@ function init() {
     });
  }
 
- startGameBtn.addEventListener('click', function(){
-    startGameBtn.style.display = 'none'; //hide when the game starts
-    init();
- })
+//  startGameBtn.addEventListener('click', function(){
+//     startGameBtn.style.display = 'none'; //hide when the game starts
+//     init();
+//  })
 
 
 
