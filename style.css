@@ -8,8 +8,7 @@
 
 body {
     height: 100vh;
-    margin-top: 2vmin;
-    margin-bottom: 2vmin;
+    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,8 +39,8 @@ header span {
 }
 
 #snake-board {
-    width: 550px;
-    height: 550px;
+    width: 510px;
+    height: 510px;
     display: grid;
     grid-template-columns: repeat(10, 30px);
     grid-template-rows: repeat(10, 30px);
@@ -78,8 +77,7 @@ header span {
 }
 
 .button {
-    /* margin-top: 1vmin; 
-    margin-bottom: 1vmin;  */
+    margin-top: 20px;
     padding: 1.5vmin;
     font-family: 'Tomorrow People', sans-serif;
     font-size: 2vmin;

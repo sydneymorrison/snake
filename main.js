@@ -265,7 +265,7 @@ function init() {
 
 
  function moveSnake () {
-    if (gameStatus !=== "over") {
+    if (gameStatus !== "over") {
         snakePrimary.move();
         renderSnakeBody();
         gameLogic();
