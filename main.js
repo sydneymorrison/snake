@@ -33,6 +33,7 @@ const targetEl = document.querySelector('.target');
 
 //Event listener for arrow keys in Snake1 class
 
+
 /*----- classes -----*/
  class Snake1 {
      constructor(snakeEl, body, length, x, y, direction) {
@@ -42,12 +43,20 @@ const targetEl = document.querySelector('.target');
          this.position = {x:x, y:y}; //position of snake
          this.direction = DIRECTIONS[direction]; //direction of snake
      }
-     
-     
 
      move () {
+        //Update the position
         this.position.x += this.direction.x;
         this.position.y += this.direction.y;
+
+        //Add a new segment to the current body
+        this.body.unshift({x: this.position.x, y:this.position.y});
+
+
+        //Snake doesnt grow remove the last part of body
+        if(this.body.length > this.length) {
+            this.body.pop();
+        }
 
         this.snakeEl.style.gridColumn = this.position.x + 1;
         this.snakeEl.style.gridRow = this.position.y + 1;
@@ -62,19 +71,16 @@ const targetEl = document.querySelector('.target');
                     snakePrimary.direction = DIRECTIONS.up;
                 }
                 break;
-
             case "ArrowRight":
                 if (snakePrimary.direction !== DIRECTIONS.left) {
                     snakePrimary.direction = DIRECTIONS.right;
                 }
-                break;
-            
+                break; 
             case "ArrowDown":
                 if(snakePrimary.direction !== DIRECTIONS.up) {
                     snakePrimary.direction = DIRECTIONS.down;
                 }
-                break;
-            
+                break;   
             case "ArrowLeft":
                 if (snakePrimary.direction !== DIRECTIONS.right) {
                         snakePrimary.direction = DIRECTIONS.left;
@@ -169,13 +175,7 @@ function init() {
 
 
  function renderBoard() {
-    // //Adding Snake to Board
-    // const addSnakeEl = document.querySelector('.snake');
-    // snakeBoardEl.appendChild(snakeEl);
 
-    // //Adding Target to Board
-    // const addTargetEl = document.querySelector('.target');
-    // snakeBoardEl.appendChild(targetEl);
   
  }
 
@@ -207,6 +207,7 @@ function init() {
     if (snakeHead.x === targetPosition.x && snakeHead.y === targetPosition.y) {
         currentScore.p += 1;
         renderCurrentScore();
+        
     //Grow the snake by 1
     snakePrimary.grow();
     //Update target to new area on grid
@@ -229,8 +230,8 @@ function init() {
     const x = Math.floor(Math.random() * snakeBoard.length);
     const y = Math.floor(Math.random() * snakeBoard[0].length);
 
-    targetEl.style.gridRowStart = y + 1;
     targetEl.style.gridColumnStart = x + 1;
+    targetEl.style.gridRowStart = y + 1;
  }
 
  function renderSnakeBody() {
