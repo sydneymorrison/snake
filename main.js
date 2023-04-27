@@ -190,9 +190,6 @@ function init() {
   
  }
 
- function renderControls () {
-
- }
 
 
  function gameLogic() {
@@ -220,18 +217,21 @@ function init() {
         }
     
     
-    if (snakeHead.x === targetPosition.x && snakeHead.y === targetPosition.y) {
-        currentScore.p += 1;
-        renderCurrentScore();
-        
+        if (snakeHead.x === targetPosition.x && snakeHead.y === targetPosition.y) {
+            currentScore.p += 1;
+            renderCurrentScore();
+            
         //Grow the snake by 1
         snakePrimary.grow();
         //Update target to new area on grid
         renderMoveTarget();
+
+        //Hide the game over message
+        messageEl.innerText = '';
+        playAgainBtn.style.display = 'none';
     }
     renderSnakeBody();
  }
-
 
 
  function renderTargetPosition (x,y) {
@@ -298,7 +298,14 @@ function init() {
     messageEl.innerHTML ='game over play again!';
     playAgainBtn.style.display = 'block';
 
+    //Event listener for gameover button
+    playAgainBtn.addEventListener('click', function(){
+        messageEl.innerText = '';
+        playAgainBtn.style.display = 'none';
+        init();
+    });
  }
+
 
 
 //Snake movement 
