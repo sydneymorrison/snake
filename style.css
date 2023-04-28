@@ -46,7 +46,6 @@ header span {
 .snake {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     background-color: yellow;
     border: 5px solid red;
 }
@@ -62,6 +61,7 @@ header span {
 .target {
     width: 40px;
     height: 40px;
+    border-radius: 50%;
     background-color: #6495ED;
     border: 5px solid green;
 }

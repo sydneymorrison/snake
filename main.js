@@ -10,11 +10,11 @@ const DIRECTIONS = {
 
 /*----- state variables -----*/
 
-let snakeBoard; //40 x 40 array
+let snakeBoard; //10 x 10 array
 let currentScore; // 'p' will be for player results
-let gameStatus; //if the game is continuing or over 
-let snakePrimary; //snake class
-let snakeMovementInterval; //snake movement
+let gameStatus; //If the game is continuing or over 
+let snakePrimary; //Snake class
+let snakeMovementInterval; //Snake movement
 
 /*----- cached elements  -----*/
 
@@ -95,7 +95,7 @@ class Snake1 {
      }
 
      grow (){
-        //Grow snake by +1 if it bumps into a target  
+        //Grow snake by +1 if it bumps into a target (logic in game logic)
         const snakeBody = this.body[this.body.length -1];
 
         //Add a new segment at the same position as the current last segment
@@ -141,12 +141,11 @@ function init() {
         snakePrimary.changeDirection(snakePrimary, event.code);
       });
 
-    // Start game by clicking buttion
+    // Start game by clicking button
     startGameBtn.addEventListener('click', startGame)
 
     //Set the targets starting position
     renderTargetPosition(7,7);
-
 
     //Call Render
     render();
@@ -292,7 +291,7 @@ function init() {
     playAgainBtn.style.display = 'block'; //show button when the game stops
     
 
-    //Event listener for gameover button
+    //Event listener for Gameover button
     playAgainBtn.addEventListener('click', function(){
         messageEl.innerText = '';
         playAgainBtn.style.display = 'none';
