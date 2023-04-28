@@ -31,6 +31,14 @@ Open the index.html file in a web browser to play the game.
 * JavaScript
 
 
+# Future Feature Enhancements
+
+1. Add different levels of difficulty, with different speeds and/or obstacles to avoid.
+2. Introduce power-ups that the snake can collect to gain extra points, speed boosts, or other bonuses.
+3. Add sound effects and music to enhance the player experience.
+4. Introduce additional game modes, such as a timed mode where players must race against the clock to collect as many points as possible.
+
+
 # Credits
 
 This game is developed by Sydney Morrison.
