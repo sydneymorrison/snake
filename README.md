@@ -16,11 +16,14 @@ Click on the "Start Game" button to start playing and the "Play Again" button to
 
 # Instructions
 
-Clone the repository using the following command:
+Option 1) Launch here at: https://sydneymorrison.github.io/snake/ 
+
+Option 2) Clone the repository using the following command:
 
 git clone https://github.com/sydneymorrison/snake.git
 
 Open the index.html file in a web browser to play the game.
+
 
 # Credits
 
