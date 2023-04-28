@@ -142,20 +142,12 @@ function init() {
         snakePrimary.changeDirection(snakePrimary, event.code);
       });
 
-    //Start game by clicking buttion
-    startGameBtn.addEventListener('click', startGame){
-        startGameBtn.style.display = 'none';
-    }
+    // Start game by clicking buttion
+    startGameBtn.addEventListener('click', startGame)
 
     //Set the targets starting position
     renderTargetPosition(7,7);
 
-    //Set snake Movement 
-    snakeMovementInterval = setInterval(function() {
-        snakePrimary.move();
-        renderSnakeBody();
-        gameLogic();
-    }, 1000);
 
     //Call Render
     render();
@@ -178,6 +170,15 @@ function init() {
     messageEl.innerHTML = '';
     startGameBtn.style.display = 'none';
     init(); 
+
+    //Set snake Movement 
+    snakeMovementInterval = setInterval(function() {
+        snakePrimary.move();
+        renderSnakeBody();
+        gameLogic();
+    }, 1000);
+
+    init();
  }
 
  function gameLogic() {
@@ -296,7 +297,7 @@ function init() {
     playAgainBtn.addEventListener('click', function(){
         messageEl.innerText = '';
         playAgainBtn.style.display = 'none';
-        init();
+        startGame();
     });
  }
 
