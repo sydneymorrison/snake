@@ -12,8 +12,6 @@ const DIRECTIONS = {
 
 let snakeBoard; //40 x 40 array
 let currentScore; // 'p' will be for player results
-let snakeLocation; //'s' for snake and 't' for target
-let snakesCurrentDirection; // 's' for snake
 let gameStatus; //if the game is continuing or over 
 let snakePrimary; //snake class
 let snakeMovementInterval; //snake movement
@@ -36,18 +34,19 @@ const startGameBtn = document.querySelector('#start-button');
 
 /*----- event listeners -----*/
 
-//Event listener for arrow keys in innit function 
+//Event listener for arrow keys in innit function (after snake class)
+//Evemt Listener for Starting Game in innit function
 //Event listener for Game Over in Game Over Function
 
 /*----- classes -----*/
  
 class Snake1 {
      constructor(snakeEl, body, length, x, y, direction) {
-         this.snakeEl = snakeEl; //new snakeEl
-         this.body = [{x: x, y: y}]; //snake body
-         this.length = 1; //length of snake
-         this.position = {x:x, y:y}; //position of snake
-         this.direction = DIRECTIONS[direction]; //direction of snake
+         this.snakeEl = snakeEl; //New snakeEl
+         this.body = [{x: x, y: y}]; //Snake body
+         this.length = 1; //Length of snake
+         this.position = {x:x, y:y}; //Position of snake
+         this.direction = DIRECTIONS[direction]; //Direction of snake
      }
 
      move () {
@@ -59,7 +58,7 @@ class Snake1 {
             //Add a new segment to the current body
             this.body.unshift({x: this.position.x, y:this.position.y});
         } else {
-            //move to new position
+            //Move to new position
             const lastSegment = this.body.pop();
             lastSegment.x = this.position.x;
             lastSegment.y = this.position.y;
@@ -70,7 +69,7 @@ class Snake1 {
     }
 
      changeDirection (snake, code) {
-        //f the player hits the up, right, down, left arrow key the
+        //If the player hits the up, right, down, left arrow key the
         //the snake should move
         switch (code) {
             case "ArrowUp":
@@ -112,6 +111,7 @@ class Snake1 {
 function init() {
     startGameBtn.style.display = 'block'; //show start game button
     playAgainBtn.style.display = 'none'; //hide game button at start
+    
     snakeBoard = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -124,20 +124,17 @@ function init() {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ];
+    
     currentScore = {
         p: 0,
     };
-    snakeLocation = {
-        x: 0,
-        y: 0,
-    };
-    snakesCurrentDirection = 'right';
+    
     gameStatus = null;
 
     //Instantiating new snake class
     snakePrimary = new Snake1(snakeEl, [{x: 5, y: 5}], 1, 5, 5, 'right');
-    // snakeBoardEl.appendChild(snakeEl);
-    // snakeBoardEl.appendChild(targetEl);
+ 
+    //Moving Snake
     snakePrimary.move(); 
 
     //Keydown Event Listener
@@ -145,16 +142,22 @@ function init() {
         snakePrimary.changeDirection(snakePrimary, event.code);
       });
 
+    //Start game by clicking buttion
+    startGameBtn.addEventListener('click', startGame){
+        startGameBtn.style.display = 'none';
+    }
+
     //Set the targets starting position
     renderTargetPosition(7,7);
 
-    //sets snake movement 
+    //Set snake Movement 
     snakeMovementInterval = setInterval(function() {
         snakePrimary.move();
         renderSnakeBody();
         gameLogic();
     }, 1000);
 
+    //Call Render
     render();
  }
 
@@ -170,6 +173,7 @@ function init() {
  }
 
  function startGame () {
+
     messageEl.appendChild(startGameBtn);
     messageEl.innerHTML = '';
     startGameBtn.style.display = 'none';
@@ -184,6 +188,7 @@ function init() {
             gameOver();
             return;
         }
+        
         //Check if the snakes head hits the snakes tail (x & y)
         for(let i = 1; i < snakePrimary.body.length; i++) {
             if (snakeHead.x === snakePrimary.body[i].x && snakeHead.y === snakePrimary.body[i].y) {
@@ -263,6 +268,7 @@ function init() {
     let newPosition;
 
     do {
+        //Add target to new random position that is not where snake is
         newPosition = renderRandomPosition();
     } while (snakePrimary.body.some(function(segment){
         return segment.x === newPosition.x && segment.y === newPosition.y;
