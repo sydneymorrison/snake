@@ -35,7 +35,8 @@ Open the index.html file in a web browser to play the game.
 
 This game is developed by Sydney Morrison.
 
-<img width="575" alt="Screen Shot 2023-04-28 at 1 15 41 AM" src="https://user-images.githubusercontent.com/109234360/235060143-deddf88f-23f5-49b0-a5cd-8d27f0666d84.png">
+
+<img width="554" alt="Screen Shot 2023-04-28 at 11 27 24 AM" src="https://user-images.githubusercontent.com/109234360/235224626-646e6f66-10d0-45f2-baa6-18206e11ca5f.png">
 
 
 
