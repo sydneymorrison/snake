@@ -4,15 +4,15 @@
 
 # How to Play
 
-Use the arrow keys to control the snake's movement.
+1. Use the arrow keys to control the snake's movement.
 
-Eat the food to grow longer and earn points.
+2. Eat the food to grow longer and earn points.
 
-Don't collide with the walls or the snake's own body.
+3. Don't collide with the walls or the snake's own body.
 
-The game is over when the snake crashes.
+4. The game is over when the snake crashes.
 
-Click on the "Start Game" button to start playing and the "Play Again" button to restart the game.
+5. Click on the "Start Game" button to start playing and the "Play Again" button to restart the game.
 
 
 # Instructions
@@ -24,6 +24,11 @@ Option 2) Clone the repository using the following command:
 git clone https://github.com/sydneymorrison/snake.git
 
 Open the index.html file in a web browser to play the game.
+
+# Technologies Used
+* HTML
+* CSS
+* JavaScript
 
 
 # Credits
