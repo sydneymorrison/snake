@@ -2,9 +2,6 @@
     box-sizing: border-box;
 }
 
-/* .flex-ctr {
-    flex-direction: column;
-} */
 
 body {
     height: 100vh;
@@ -28,7 +25,6 @@ h2 {
     color: green;
     align-content: left; 
     font-family: 'Tomorrow People', sans-serif;
-    /* margin-right: 400px; */
 }
 
 
@@ -48,14 +44,11 @@ header span {
     background-color: lightpink;
 }
 
-#snake-board > div {
-    /* border: 0.6px solid #8A2BE2; */
-}
 
 .snake {
     width: 40px;
     height: 40px;
-    /* position: absolute; */
+    border-radius: 50%;
     background-color: yellow;
     border: 5px solid red;
 }
@@ -70,14 +63,12 @@ header span {
 .target {
     width: 40px;
     height: 40px;
-    /* position: absolute; */
-    border-radius: 50%;
     background-color: #6495ED;
     border: 5px solid green;
 }
 
 .button {
-    margin-top: 20px;
+    margin-top: 5px;
     padding: 1.5vmin;
     font-family: 'Tomorrow People', sans-serif;
     font-size: 2vmin;
