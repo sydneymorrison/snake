@@ -13,13 +13,11 @@ body {
     background-color: lightblue;
 }
 
-
 #snake-header {
     display: inline-flex; 
     justify-content: center;
     gap: 1px;
 }
-
 
 h2 {
     color: green;
@@ -38,8 +36,8 @@ header span {
     width: 510px;
     height: 510px;
     display: grid;
-    grid-template-columns: repeat(10, 30px);
-    grid-template-rows: repeat(10, 30px);
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
     border: 6px solid #8A2BE2;
     background-color: lightpink;
 }
@@ -58,6 +56,7 @@ header span {
     height: 40px;
     background-color: #40E0D0;
     border: 5px solid #E2F516;
+    box-sizing: border-box;
 }
 
 .target {
