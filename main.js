@@ -21,24 +21,23 @@ let snakeMovementInterval; //snake movement
 
 /*----- cached elements  -----*/
 
-const snakeBoardEl = document.querySelector('#snake-board'); // Capture the board
+//Capture the game board
+const snakeBoardEl = document.querySelector('#snake-board'); 
 //Add snake to snakeBoard
 const snakeEl = document.querySelector('.snake'); 
 //Add target Object to snakeBoard
 const targetEl = document.querySelector('.target');
 //Message Element
 const messageEl = document.querySelector('#game-message');
-//Play again button
+//Play Again button
 const playAgainBtn = document.querySelector('#stop-button'); 
-//Start game button
+//Start Game button
 const startGameBtn = document.querySelector('#start-button');
 
 /*----- event listeners -----*/
 
-
 //Event listener for arrow keys in innit function 
-//Event listener 
-
+//Event listener for Game Over in Game Over Function
 
 /*----- classes -----*/
  
@@ -71,7 +70,7 @@ class Snake1 {
     }
 
      changeDirection (snake, code) {
-        //if the player hits the up, right, down, left arrow key the
+        //f the player hits the up, right, down, left arrow key the
         //the snake should move
         switch (code) {
             case "ArrowUp":
@@ -109,7 +108,6 @@ class Snake1 {
 
 /*----- functions -----*/
  init();
-
 
 function init() {
     startGameBtn.style.display = 'block'; //show start game button
@@ -160,14 +158,11 @@ function init() {
     render();
  }
 
- 
-
  function render() {
     renderBoard();
     renderCurrentScore();
     renderSnakeBody();
  }
-
 
  function renderBoard() {
     snakeBoardEl.appendChild(snakeEl);
@@ -219,6 +214,30 @@ function init() {
     renderSnakeBody();
  }
 
+ function moveSnake () {
+    if (gameStatus !== "over") {
+        snakePrimary.move();
+        renderSnakeBody();
+        gameLogic();
+    }
+ }
+
+ function renderSnakeBody() {
+    //Other parts and remove
+    const bodyElements = document.querySelectorAll('.body');
+    bodyElements.forEach(function(bodySegment){
+        bodySegment.remove();
+    });
+
+    //Render the segments on the board and add snake body parts
+    snakePrimary.body.slice(1).forEach(function(segment){
+        const bodySegment = document.createElement('div');
+        bodySegment.className = 'body';
+        bodySegment.style.gridColumnStart = segment.x + 1;
+        bodySegment.style.gridRowStart = segment.y + 1;
+        snakeBoardEl.appendChild(bodySegment);
+    });
+ }
 
  function renderTargetPosition (x,y) {
     targetEl.style.gridColumnStart = x + 1;
@@ -232,10 +251,6 @@ function init() {
     };
  }
 
- function renderCurrentScore() {
-    const scoreDisplay = document.querySelector('#power-score-counter');
-    scoreDisplay.textContent = `${currentScore.p}`;
- }
 
  function renderMoveTarget() {
     //Move target on grid in random position
@@ -258,34 +273,13 @@ function init() {
  };
 
 
- function moveSnake () {
-    if (gameStatus !== "over") {
-        snakePrimary.move();
-        renderSnakeBody();
-        gameLogic();
-    }
+ function renderCurrentScore() {
+    const scoreDisplay = document.querySelector('#power-score-counter');
+    scoreDisplay.textContent = `${currentScore.p}`;
  }
 
-
- function renderSnakeBody() {
-    //Other parts and remove
-    const bodyElements = document.querySelectorAll('.body');
-    bodyElements.forEach(function(bodySegment){
-        bodySegment.remove();
-    });
-
-    //Render the segments on the board and add snake body parts
-    snakePrimary.body.slice(1).forEach(function(segment){
-        const bodySegment = document.createElement('div');
-        bodySegment.className = 'body';
-        bodySegment.style.gridColumnStart = segment.x + 1;
-        bodySegment.style.gridRowStart = segment.y + 1;
-        snakeBoardEl.appendChild(bodySegment);
-    });
- }
-
- //Stop game and render message
  function gameOver() {
+    //Stop game and render message
     clearInterval(snakeMovementInterval);
     messageEl.innerHTML ='game over!';
     startGameBtn.style.display = 'none'; //hide button when the game stops
