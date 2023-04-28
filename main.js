@@ -16,7 +16,6 @@ let gameStatus; //if the game is continuing or over
 let snakePrimary; //snake class
 let snakeMovementInterval; //snake movement
 
-
 /*----- cached elements  -----*/
 
 //Capture the game board
