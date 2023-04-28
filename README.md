@@ -14,7 +14,7 @@ The game is over when the snake crashes.
 
 Click on the "Start Game" button to start playing and the "Play Again" button to restart the game.
 
-#Instructions
+# Instructions
 
 Clone the repository using the following command:
 
